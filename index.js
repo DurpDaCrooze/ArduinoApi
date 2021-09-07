@@ -1,6 +1,6 @@
 const app = require('express')();
 const cors = require('cors');
-const PORT = process.env.PORT || 5000;
+const PORT = c5000;
 
 var SerialPort = require('serialport');
 const parsers = SerialPort.parsers;
