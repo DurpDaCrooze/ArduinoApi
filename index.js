@@ -1,6 +1,6 @@
 const app = require('express')();
 const cors = require('cors');
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 5000;
 
 var SerialPort = require('serialport');
 const parsers = SerialPort.parsers;
@@ -29,7 +29,10 @@ parser.on('data', function(data){
 
     analogvalue = analogvalue.replace("\n", "");
     analogvalue = analogvalue.replace("\r", "");
+
 })
+
+lighton();
 
 app.get(["/"], (req, res) => {
     res.send({
@@ -38,5 +41,15 @@ app.get(["/"], (req, res) => {
         }
     });
 })
+
+function lighton(){
+    port.write("1");
+    console.log('light on?');
+}
+
+setTimeout(function(){
+    port.write("1");
+    console.log('light on?');
+}, 3000);
 
 app.listen(PORT);
